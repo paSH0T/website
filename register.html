@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Реєстрація та вхід</title>
+    <style>
+        /* Общие стили */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 1rem;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"] {
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        /* Стили для формы входа */
+        #loginForm {
+            margin-top: 2rem;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 0.5rem;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const registrationForm = document.getElementById('registrationForm');
+            registrationForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                if (password !== confirmPassword) {
+                    alert('Паролі не співпадають!');
+                    return;
+                }
+                alert('Реєстрація успішна!');
+                registrationForm.reset();
+            });
+
+            const loginForm = document.getElementById('loginForm');
+            loginForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const email = document.getElementById('emailLogin').value;
+                const password = document.getElementById('passwordLogin').value;
+                // Здесь проверяем введенные данные   "test@example.com" и "password123")
+                if (email !== 'test@example.com' || password !== 'password123') {
+                    const errorMessage = document.getElementById('loginErrorMessage');
+                    errorMessage.innerText = 'Неправильна електронна пошта або пароль';
+                    return;
+                }
+                alert(`Успішний вхід! Електронна пошта: ${email}, Пароль: ${password}`);
+                loginForm.reset();
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Реєстрація та вхід</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="about.html">Про мене</a></li>
+                <li><a href="gallery.html">Фото</a></li>
+                <li><a href="register.html">Реєстрація</a></li>
+            
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Створити обліковий запис</h2>
+            <form id="registrationForm">
+                <label for="username">Ім'я користувача:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="email">Електронна пошта:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" name="password" required>
+
+                <label for="confirmPassword">Підтвердження пароля:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+                <label for="dob">Дата народження:</label>
+                <input type="date" id="dob" name="dob" required>
+
+                <button type="submit">Зареєструватися</button>
+            </form>
+        </section>
+
+        <!-- Форма входа -->
+        <section>
+            <h2>Увійти до облікового запису</h2>
+            <form id="loginForm">
+                <label for="emailLogin">Електронна пошта:</label>
+                <input type="email" id="emailLogin" name="emailLogin" required>
+
+                <label for="passwordLogin">Пароль:</label>
+                <input type="password" id="passwordLogin" name="passwordLogin" required>
+
+                <button type="submit">Увійти</button>
+                <p class="error-message" id="loginErrorMessage"></p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Наш сайт. Всі права захищені.</p>
+    </footer>
+</body>
+</html>
